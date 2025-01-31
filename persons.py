@@ -4,6 +4,9 @@ import json
 
 app = Flask(__name__)
 
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port=8080)
+
 with app.app_context():
 	with open('persons.csv', 'r') as file:
 		csv_reader = csv.DictReader(file)
