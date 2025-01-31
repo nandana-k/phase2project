@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, abort
 import csv
 import json
 
@@ -16,3 +16,11 @@ with app.app_context():
 @app.route("/persons")
 def persons():
 	return json.dumps(data[0:10], indent=4)
+
+@app.route("/persons/<id>")
+def persons_id(id):
+	for person in data:
+		person_id = person["Id"]
+		if person_id == id:
+			return json.dumps(person, indent=4)
+	return abort(404, description="Person not found")
