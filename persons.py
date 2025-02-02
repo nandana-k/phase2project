@@ -31,6 +31,41 @@ with app.app_context():
 			if  not firstNameFirstLetter or  not lastNameFirstLetter or not firstNameLowercase or not lastNameLowercase:
 				continue
 
+			# Email Validation
+			email = row["Email"]
+			specialChars = ['.', '-', '_', '@']
+			validEmail = True
+			if len(email) > 320 or email.count('@') != 1:
+				continue
+			if not email[0].isalnum() or not email[len(email)-1].isalpha():
+				continue
+			for i in range(1,len(email)):
+				if email[i].isalnum():
+					continue
+				elif email[i] in specialChars:
+					if email[i+1] in specialChars:
+						validEmail = False
+						break
+					if email[i] == '@':
+						domain = email[i+1:len(email)]
+						local = email[0:i]
+						if len(domain) > 255 or len(local) > 64:
+							validEmail = False
+							break
+					continue
+				else:
+					validEmail = False
+					break
+
+			if not validEmail:
+				continue
+			if '.' not in domain:
+				continue
+			periodIndex = domain.index('.')
+			tld = domain[periodIndex+1:len(domain)]
+			if len(tld) < 2:
+				continue
+
 			data.append(row)
 		persons_list = json.dumps(data, indent=4)
 
