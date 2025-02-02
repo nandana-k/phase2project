@@ -14,12 +14,22 @@ with app.app_context():
 		ids = []
 		for row in csv_reader:
 
-			#Id Validation
+			# Id Validation
 			if row["Id"] == "":
 				continue
 			if row["Id"] in ids:
 				continue
 			ids.append(row["Id"])
+
+			# First_Name and Last_Name Validation
+			if not row["First_Name"].isalpha() or not row["Last_Name"].isalpha():
+				continue
+			firstNameFirstLetter = row["First_Name"][0].isupper()
+			lastNameFirstLetter = row["Last_Name"][0].isupper()
+			firstNameLowercase = row["First_Name"][1:len(row["First_Name"])].islower()
+			lastNameLowercase = row["Last_Name"][1:len(row["Last_Name"])].islower()
+			if  not firstNameFirstLetter or  not lastNameFirstLetter or not firstNameLowercase or not lastNameLowercase:
+				continue
 
 			data.append(row)
 		persons_list = json.dumps(data, indent=4)
