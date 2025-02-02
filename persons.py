@@ -52,7 +52,6 @@ with app.app_context():
 						if len(domain) > 255 or len(local) > 64:
 							validEmail = False
 							break
-					continue
 				else:
 					validEmail = False
 					break
@@ -65,6 +64,28 @@ with app.app_context():
 			tld = domain[periodIndex+1:len(domain)]
 			if len(tld) < 2:
 				continue
+
+			# Salary Validation
+			salary = row["Salary"]
+			validSalary = True
+			if salary.count('.') != 1:
+				continue
+			if salary[0] == '0' and salary[1] != '.':
+				continue
+			for i in range(len(salary)):
+				if salary[i].isnumeric():
+					continue
+				elif salary[i] == '.':
+					if i == 0 or len(salary) != i+3:
+						validSalary = False
+						break
+				else:
+					validSalary = False
+					break
+
+			if not validSalary:
+				continue
+			row["Salary"] = float(salary)
 
 			data.append(row)
 		persons_list = json.dumps(data, indent=4)
