@@ -15,11 +15,27 @@ with app.app_context():
 		for row in csv_reader:
 
 			# Id Validation
-			if row["Id"] == "":
+			id = row["Id"]
+			idLetters = ['a','b','c','d','e','f','A','B','C','D','E','F']
+			validId = True
+			if id == "":
 				continue
-			if row["Id"] in ids:
+			if id in ids:
 				continue
-			ids.append(row["Id"])
+			if len(id) != 36:
+				continue
+			if id[8] != '-' or id[13] != '-' or id[18] != '-' or id[23] != '-':
+				continue
+			for i in range(len(id)):
+				if id[i].isnumeric() or id[i] in idLetters or id[i] == '-':
+					continue
+				else:
+					validId = False
+					break
+
+			if not validId:
+				continue
+			ids.append(id)
 
 			# First_Name and Last_Name Validation
 			if not row["First_Name"].isalpha() or not row["Last_Name"].isalpha():
