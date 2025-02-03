@@ -7,6 +7,7 @@ app = Flask(__name__)
 if __name__ == '__main__':
 	app.run(port=8080)
 
+# Read persons.csv upon application start
 with app.app_context():
 	with open('persons.csv', 'r') as file:
 		csv_reader = csv.DictReader(file)
@@ -106,10 +107,12 @@ with app.app_context():
 			data.append(row)
 		persons_list = json.dumps(data, indent=4)
 
+# GET /persons
 @app.route("/persons")
 def persons():
 	return json.dumps(data[0:10], indent=4)
 
+# GET /persons/<id>
 @app.route("/persons/<id>")
 def persons_id(id):
 	for person in data:
