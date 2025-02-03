@@ -36,7 +36,7 @@ To validate salary, it is first checked that there is exactly one period ('.') i
 
 When a request is sent to the /persons endpoint, it will return the first 10 person records in JSON format. One record looks like this, for example:
 
-'''json
+```json
 [
  {
     "Id": "7b0a853a-740a-4118-97e0-ed592b5379e7",
@@ -47,7 +47,7 @@ When a request is sent to the /persons endpoint, it will return the first 10 per
  },
  ...
 ]
-'''
+```
 
 #### GET /persons/<id>
 
