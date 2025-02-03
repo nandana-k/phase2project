@@ -44,8 +44,7 @@ When a request is sent to the /persons endpoint, it will return the first 10 per
     "Last_Name": "Lozano",
     "Email": "vmata@colon.com",
     "Salary": 271896.64
- },
- ...
+ }
 ]
 ```
 
