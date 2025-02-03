@@ -8,7 +8,7 @@ It is necessary to install pip and Flask to use this project.
 
 ## Usage
 
-Upon application start, the server will start up and read the CSV file (persons.csv). It will check each record and store them in memory as JSON if they are valid or skip them if they are invalid. All valid records are stored in the lists data and persons_list in memory.
+Upon application start, the server will start up and read the CSV file (persons.csv). It will check each record and store them in memory as JSON if they are valid or skip them if they are invalid. All valid records are stored in the lists data and persons_list in memory. The server listens on port 8080.
 
 ### Validation
 
@@ -48,9 +48,9 @@ When a request is sent to the /persons endpoint, it will return the first 10 per
 ]
 ```
 
-#### GET /persons/<id>
+#### GET /persons/\<id\>
 
-When a request is sent to the persons/<id> endpoint, if the given id is found, the person with that id's record will be returned in JSON format. If the id is not found, a 404 error ("Person not found") will be returned.
+When a request is sent to the persons/<id> endpoint, if the given id is found, the person with that id's record will be returned in JSON format (the same format as shown above). If the id is not found, a 404 error ("Person not found") will be returned.
 
 ## Error Handling
 
