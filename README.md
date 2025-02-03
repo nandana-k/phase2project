@@ -34,7 +34,7 @@ To validate salary, it is first checked that there is exactly one period ('.') i
 
 #### GET /persons
 
-When a request is sent to the /persons endpoint, it will return the first 10 person records in JSON format. One record looks like this, for example:
+When a request is sent to the /persons endpoint, it will return the first 10 person records in JSON format. The status code is 200. One record looks like this, for example:
 
 ```json
 [
@@ -50,7 +50,7 @@ When a request is sent to the /persons endpoint, it will return the first 10 per
 
 #### GET /persons/\<id\>
 
-When a request is sent to the persons/<id> endpoint, if the given id is found, the person with that id's record will be returned in JSON format (the same format as shown above). If the id is not found, a 404 error ("Person not found") will be returned.
+When a request is sent to the persons/<id> endpoint, if the given id is found, the person with that id's record will be returned in JSON format (the same format as shown above). The status code is 200. If the id is not found, a 404 error ("Person not found") will be returned.
 
 ## Error Handling
 
